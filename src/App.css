@@ -1,0 +1,701 @@
+/* App.css */
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  background-color: #000000;
+  line-height: 1.6;
+  color: #e4e6eb;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #24252a;
+  color: #e4e6eb;
+  text-align: center;
+  padding: 15px 0;
+  z-index: 1000;
+}
+
+.header-bar h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #e4e6eb;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 20px 0;
+  padding: 0;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #24252a;
+  border-radius: 8px;
+  padding: 0;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.9);
+  width: 140px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+
+.region-card {
+  width: 160px;
+}
+
+.team-card {
+  width: 120px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3a3b3d;
+  color: #e4e6eb;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.8);
+}
+
+.team-card.selected {
+    border-color: #007bff;
+    box-shadow: 0 8px 16px rgba(0,123,255,0.4);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card.selected {
+  border-color: #007bff;
+  transform: translateY(-3px);
+}
+
+.region-card.selected {
+ border-color: #28a745;
+}
+
+.card .image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.pokemon-card .pokemon-name {
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 10px;
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  color: #1a1a1a;
+  box-sizing: border-box;
+}
+
+.elite4-name {
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 10px;
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  color: #1a1a1a;
+  box-sizing: border-box;
+}
+
+.card p.region-generation {
+  font-size: 0.8rem;
+  color: #b0b3b8;
+  margin-top: 4px;
+}
+
+.selected-item-details {
+  background: #24252a;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.9);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 4px solid #007bff;
+  color: #e4e6eb;
+}
+
+.selected-item-details.region-details {
+  border-top-color: #28a745;
+}
+
+.selected-item-details .image-detail {
+  display: block;
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.7);
+}
+
+.selected-item-details h3 {
+  font-size: 1.3rem;
+  color: #b0b3b8;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #3a3b3d;
+  padding-bottom: 6px;
+  font-weight: 500;
+}
+
+.selected-item-details p {
+  font-size: 1rem;
+  color: #e4e6eb;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.selected-item-details ul {
+  list-style: none;
+  padding: 0;
+  margin-left: 0;
+}
+
+.selected-item-details ul li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.pokemon-team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.pokemon-team img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  background-color: #3a3b3d;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.pokemon-cards-display {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 0 !important;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pokemon-card {
+  background-color: #24252a;
+  border-radius: 6px;
+  padding: 0;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.8);
+  width: 160px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-3px);
+}
+
+.pokemon-image {
+  display: block;
+  flex-grow: 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+}
+
+@media (max-width: 1024px) {
+   .card {
+    flex-basis: calc(25% - 15px);
+    max-width: calc(25% - 15px);
+  }
+
+  .region-card {
+    flex-basis: calc(25% - 15px);
+    max-width: calc(25% - 15px);
+  }
+
+  .pokemon-card {
+    width: 120px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-bar h1 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding-top: 0;
+    margin-top: 20px;
+  }
+
+  .cards-container {
+    gap: 10px;
+  }
+
+  .card {
+    flex-basis: calc(33.333% - 10px);
+    max-width: calc(33.333% - 10px);
+    padding: 0;
+  }
+
+  .card .image {
+    height: 100px;
+  }
+
+  .elite4-name {
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 10px;
+    flex-shrink: 0;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    color: #1a1a1a;
+    box-sizing: border-box;
+  }
+
+  .region-card {
+    flex-basis: calc(33.333% - 10px);
+    max-width: calc(33.333% - 10px);
+  }
+
+  .selected-item-details {
+    padding: 20px;
+  }
+
+  .selected-item-details h3 {
+    font-size: 1.1rem;
+  }
+
+  .selected-item-details p,
+  .selected-item-details ul li {
+    font-size: 0.9rem;
+  }
+
+  .selected-item-details .image-detail {
+    max-width: 200px;
+  }
+
+  .pokemon-team img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .pokemon-card {
+    width: 100px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-bar h1 {
+    font-size: 1.5rem;
+  }
+  .container {
+     padding-top: 0;
+     margin-top: 20px;
+  }
+
+  .cards-container {
+    gap: 10px;
+  }
+
+  .card {
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    margin-bottom: 10px;
+  }
+   .cards-container {
+    gap: 10px;
+  }
+
+  .region-card {
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+
+  .selected-item-details {
+    padding: 15px;
+  }
+
+  .pokemon-details-title-wrapper {
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 10px;
+  }
+
+  .pokemon-details-card h2 {
+    font-size: 1.3rem;
+    padding: 8px 15px;
+  }
+
+  .elite4-name {
+    font-size: 0.8rem;
+    margin: 0;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 10px;
+    flex-shrink: 0;
+    display: block;
+    width: 100%;
+    border-radius: 4px;
+    color: #1a1a1a;
+    box-sizing: border-box;
+  }
+
+  .pokemon-card {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.pokemon-details-card {
+  background: #24252a;
+  border-radius: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,1);
+  text-align: left;
+  box-sizing: border-box;
+  color: #e4e6eb;
+  position: relative;
+  z-index: 1002;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  width: 500px;
+}
+
+.pokemon-details-title-wrapper {
+  padding: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  width: calc(100% + 40px);
+  margin-left: -20px;
+  margin-right: -20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pokemon-details-card h2 {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px 20px;
+}
+
+.pokemon-details-card p {
+  font-size: 1rem;
+  color: #b0b3b8;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.pokemon-details-card img {
+    display: block;
+    max-width: 150px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.details-menu {
+  margin-top: 20px;
+}
+
+.menu-content {
+  margin-top: 10px;
+  padding-left: 0;
+  border-left: none;
+}
+
+/* Stili per l'elenco semplice della strategia */
+.strategy-content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spazio tra gli step/branch */
+    padding-top: 10px;
+}
+
+/* Stile base per uno step */
+.strategy-step {
+    background-color: #2a2b30; /* Sfondo scuro per gli step */
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #e4e6eb;
+    word-break: break-word;
+    display: flex; /* Usa flexbox per allineare testo e icona */
+    justify-content: space-between; /* Spazia testo e icona */
+    align-items: center; /* Centra verticalmente */
+}
+
+/* Stile per uno step che ha variazioni (lo rende cliccabile) */
+.strategy-step.has-variations {
+    cursor: pointer; /* Indica che è cliccabile */
+    border: 1px solid #3a3b3d; /* Aggiungi un bordo per distinguerlo */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.strategy-step.has-variations:hover {
+    background-color: #3a3b3d;
+    border-color: #007bff;
+}
+
+/* Stile per l'icona di espansione/compressione */
+.variation-toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+    margin-left: 10px; /* Spazio tra testo e icona */
+}
+
+/* Ruota l'icona quando le variazioni sono aperte */
+.strategy-step.open .variation-toggle-icon {
+    transform: rotate(180deg);
+}
+
+
+/* Stile per il contenitore delle variazioni annidate */
+.strategy-variations-nested {
+    margin-top: 8px; /* Spazio sopra le variazioni annidate */
+    margin-left: 15px; /* Indentazione per le variazioni annidate */
+    border-left: 2px solid #007bff; /* Bordo a sinistra per le variazioni annidate */
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Spazio tra le variazioni interne */
+}
+
+
+/* Rimosso lo stile per strategy-breadcrumbs e elementi flowchart */
+/*
+.strategy-step-node { ... }
+.strategy-branch-node { ... }
+.flow-arrow { ... }
+.strategy-breadcrumbs { ... }
+.breadcrumb-item { ... }
+.back-button { ... }
+.strategy-branch { ... }
+.branch-header { ... }
+.branch-condition-text { ... }
+.branch-toggle-icon { ... }
+.branch-strategy-nested { ... }
+*/
+
+@media (max-width: 768px) {
+  .pokemon-details-card {
+    padding: 15px;
+    max-width: 95%;
+    width: auto;
+  }
+
+  .pokemon-details-title-wrapper {
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 10px;
+  }
+
+  .pokemon-details-card h2 {
+    font-size: 1.3rem;
+    padding: 8px 15px;
+  }
+
+  .pokemon-details-card p {
+    font-size: 0.9rem;
+  }
+
+  .pokemon-details-card img {
+    max-width: 100px;
+  }
+
+   /* Aggiusta l'indentazione e il bordo delle variazioni annidate su schermi piccoli */
+  .strategy-variations-nested {
+      margin-left: 10px; /* Riduci l'indentazione */
+      border-left: 2px solid #007bff;
+      padding-left: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+   .pokemon-details-title-wrapper {
+    width: calc(100% + 30px);
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 10px;
+  }
+
+  .pokemon-details-card h2 {
+    font-size: 1.3rem;
+    padding: 8px 15px;
+  }
+
+  .strategy-step {
+      font-size: 0.85rem; /* Riduci ulteriormente la dimensione del font */
+      padding: 8px; /* Riduci il padding */
+  }
+
+   /* Aggiusta l'indentazione e il bordo delle variazioni annidate su schermi molto piccoli */
+  .strategy-variations-nested {
+      margin-left: 5px; /* Riduci ulteriormente l'indentazione */
+      border-left: 1px solid #007bff; /* Riduci lo spessore del bordo */
+      padding-left: 3px;
+  }
+}
+
+.strategy-step p span.pokemon-color {
+    color: #fbfcfb !important; /* Un verde chiaro per i nomi dei Pokémon */
+    font-weight: bold;
+}
+
+.strategy-step p span.move-item-color {
+    color: #90ff8e !important; /* Un giallo/arancione per mosse e strumenti */
+    font-weight: bold;
+}
+
+.strategy-step p span.action-color {
+    color: #f35858 !important; /* Un blu chiaro per le azioni (Switch, use, etc.) */
+    font-weight: bold;
+}
+
+/* Assicurati che lo stile per .strategy-step p non sovrascriva il colore */
+.strategy-step p {
+    margin: 0; /* Rimuovi i margini predefiniti del paragrafo */
+    flex-grow: 1; /* Permette al testo di occupare lo spazio disponibile */
+    white-space: pre-wrap; /* Mantiene la formattazione delle nuove righe */
+    /* Rimuovi o commenta eventuali regole 'color' qui se presenti */
+    /* color: initial; */ /* Potresti aggiungere questo se il colore è sovrascritto */
+}
+
+/* Stile base per uno step (esistente, assicurati che il colore del testo non sovrascriva gli span) */
+.strategy-step {
+    background-color: #2a2b30;
+    border-radius: 4px;
+    padding: 10px; /* Riduci il padding per evitare scroll orizzontale su schermi piccoli */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #e4e6eb; /* Assicurati che questo sia un colore di base che si adatti ai colori degli span */
+    word-break: break-word;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Usa flex-start per allineare il testo in alto */
+    text-align: left; /* Allinea il testo a sinistra */
+}
