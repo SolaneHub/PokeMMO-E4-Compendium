@@ -9,7 +9,6 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 * [React](https://reactjs.org/)
 * [Tailwind CSS](https://tailwindcss.com/) (installed, not yet in use)
-* Backend (please specify the language/framework if applicable)
 
 ---
 
@@ -34,11 +33,21 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 ```bash
 /pokemmo-elite4-compendium
 ├── /src
-│   ├── /components
-│   ├── /pages
 │   ├── /assets
+│   ├── /components
+│   │   ├── EliteMemberCard.jsx
+│   │   ├── PokemonCard.jsx
+│   │   ├── RegionCard.jsx
+│   ├── /data
+│   │   ├── eliteFourData.jsx
+│   │   ├── pokemonColors.jsx
+│   │   ├── pokemonData.jsx
+│   │   ├── pokemonImages.jsx
+│   │   ├── regionData.jsx
+│   ├── App.css
 │   ├── App.jsx
-│   └── index.js
+│   ├── index.css
+│   └── index.jsx
 ├── tailwind.config.js
 └── package.json
 ```
@@ -48,9 +57,8 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 ## 🔮 TODO
 
 * [ ] Full TailwindCSS integration
-* [ ] Add detailed guides for each region (Kanto, Hoenn, Sinnoh, Unova)
-* [ ] Dark/light mode toggle
-* [ ] Backend/API integration
+* [ ] Implementing routes for all pokemons (Kanto, Hoenn, Sinnoh, Unova)
+* [ ] Implementing more teams for variety of clears
 * [ ] Multi-language support
 
 ---
