@@ -45,31 +45,6 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 ---
 
-## 🔧 Local Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/pokemmo-elite4-compendium.git
-   ```
-2. Navigate to the project folder:
-
-   ```bash
-   cd pokemmo-elite4-compendium
-   ```
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
----
-
 ## 🔮 TODO
 
 * [ ] Full TailwindCSS integration
@@ -77,12 +52,6 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 * [ ] Dark/light mode toggle
 * [ ] Backend/API integration
 * [ ] Multi-language support
-
----
-
-## 🤝 Contributing
-
-Feel free to open a pull request if you'd like to contribute with strategies, refactoring, or new features!
 
 ---
 
