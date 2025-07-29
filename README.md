@@ -16,9 +16,7 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 ### 🌐 Frontend
 
-> *(Insert one or more frontend images here)*
-> Example:
-> ![Homepage Screenshot](./screenshots/home.png)
+![Homepage Screenshot](./screenshots/home.png)
 
 ---
 
