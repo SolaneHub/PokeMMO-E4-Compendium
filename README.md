@@ -54,6 +54,15 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 ---
 
+## 💡 Inspiration
+
+This project was inspired by an existing online Pokemmo Elite Four guide.  
+While that resource provided a starting point, I felt there was room for a more user-friendly, interactive, and visually appealing experience — especially for mobile users.
+
+This compendium was built to improve clarity, accessibility, and strategy organization for players across all regions.
+
+---
+
 ## 🔮 TODO
 
 * [ ] Fully integrate Tailwind CSS for consistent and modern UI styling
