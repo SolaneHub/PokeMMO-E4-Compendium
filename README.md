@@ -1,35 +1,35 @@
 # 🏆 Pokemmo Elite 4 Compendium
 
-Guida interattiva e dettagliata per affrontare e sconfiggere i Superquattro di **Pokemmo**.
-Il sito accompagna passo dopo passo il giocatore con consigli, strategie e team suggeriti per ogni Lega Pokémon.
+An interactive and detailed guide to help players defeat the Elite Four in **Pokemmo**.
+This site walks players step-by-step with tips, strategies, and suggested teams for each Pokémon League.
 
 ---
 
-## ⚙️ Tecnologie usate
+## ⚙️ Technologies Used
 
 * [React](https://reactjs.org/)
-* [Tailwind CSS](https://tailwindcss.com/) (installato, in fase di integrazione)
-* Backend (specifica il linguaggio/framework se presente)
+* [Tailwind CSS](https://tailwindcss.com/) (installed, not yet in use)
+* Backend (please specify the language/framework if applicable)
 
 ---
 
-## 📸 Screenshot
+## 📸 Screenshots
 
 ### 🌐 Frontend
 
-> *(Inserisci qui una o più immagini del frontend)*
-> Esempio:
+> *(Insert one or more frontend images here)*
+> Example:
 > ![Homepage Screenshot](./screenshots/frontend-home.png)
 
 ### 🖥️ Backend
 
-> *(Inserisci qui uno screen del backend se applicabile, anche in console o su Postman)*
-> Esempio:
+> *(Insert backend screenshots here if applicable, such as console output or Postman responses)*
+> Example:
 > ![API Screenshot](./screenshots/backend-api.png)
 
 ---
 
-## 📁 Struttura progetto
+## 📁 Project Structure
 
 ```bash
 /pokemmo-elite4-compendium
@@ -42,3 +42,57 @@ Il sito accompagna passo dopo passo il giocatore con consigli, strategie e team 
 ├── tailwind.config.js
 └── package.json
 ```
+
+---
+
+## 🔧 Local Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/pokemmo-elite4-compendium.git
+   ```
+2. Navigate to the project folder:
+
+   ```bash
+   cd pokemmo-elite4-compendium
+   ```
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+---
+
+## 🔮 TODO
+
+* [ ] Full TailwindCSS integration
+* [ ] Add detailed guides for each region (Kanto, Hoenn, Sinnoh, Unova)
+* [ ] Dark/light mode toggle
+* [ ] Backend/API integration
+* [ ] Multi-language support
+
+---
+
+## 🤝 Contributing
+
+Feel free to open a pull request if you'd like to contribute with strategies, refactoring, or new features!
+
+---
+
+## ©️ Copyright
+
+This project is **not open source**.
+All content, code, and media are protected by copyright and may not be copied, modified, or distributed without explicit permission from the author.
+
+---
+
+## 📬 Contact
+
+For questions, suggestions, or collaborations, feel free to reach out via GitHub.
