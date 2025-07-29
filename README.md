@@ -1,98 +1,12 @@
-# 🏆 Pokemmo Elite 4 Compendium
+# React + Vite
 
-An interactive and detailed guide to help players defeat the Elite Four in **Pokemmo**.
-This site walks players step-by-step with tips, strategies, and suggested teams for each Pokémon League.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## ⚙️ Technologies Used
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-* [React](https://reactjs.org/)
-* [Tailwind CSS](https://tailwindcss.com/) (installed, not yet in use)
-* Backend (please specify the language/framework if applicable)
+## Expanding the ESLint configuration
 
----
-
-## 📸 Screenshots
-
-### 🌐 Frontend
-
-> *(Insert one or more frontend images here)*
-> Example:
-> ![Homepage Screenshot](./screenshots/frontend-home.png)
-
-### 🖥️ Backend
-
-> *(Insert backend screenshots here if applicable, such as console output or Postman responses)*
-> Example:
-> ![API Screenshot](./screenshots/backend-api.png)
-
----
-
-## 📁 Project Structure
-
-```bash
-/pokemmo-elite4-compendium
-├── /src
-│   ├── /components
-│   ├── /pages
-│   ├── /assets
-│   ├── App.jsx
-│   └── index.js
-├── tailwind.config.js
-└── package.json
-```
-
----
-
-## 🔧 Local Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/your-username/pokemmo-elite4-compendium.git
-   ```
-2. Navigate to the project folder:
-
-   ```bash
-   cd pokemmo-elite4-compendium
-   ```
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-
-   ```bash
-   npm start
-   ```
-
----
-
-## 🔮 TODO
-
-* [ ] Full TailwindCSS integration
-* [ ] Add detailed guides for each region (Kanto, Hoenn, Sinnoh, Unova)
-* [ ] Dark/light mode toggle
-* [ ] Backend/API integration
-* [ ] Multi-language support
-
----
-
-## 🤝 Contributing
-
-Feel free to open a pull request if you'd like to contribute with strategies, refactoring, or new features!
-
----
-
-## ©️ Copyright
-
-This project is **not open source**.
-All content, code, and media are protected by copyright and may not be copied, modified, or distributed without explicit permission from the author.
-
----
-
-## 📬 Contact
-
-For questions, suggestions, or collaborations, feel free to reach out via GitHub.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
