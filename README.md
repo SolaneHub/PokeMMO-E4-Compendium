@@ -18,13 +18,7 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 > *(Insert one or more frontend images here)*
 > Example:
-> ![Homepage Screenshot](./screenshots/frontend-home.png)
-
-### 🖥️ Backend
-
-> *(Insert backend screenshots here if applicable, such as console output or Postman responses)*
-> Example:
-> ![API Screenshot](./screenshots/backend-api.png)
+> ![Homepage Screenshot](./screenshots/home.png)
 
 ---
 
