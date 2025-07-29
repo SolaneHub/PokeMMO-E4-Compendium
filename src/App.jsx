@@ -210,7 +210,7 @@ function App() {
       // Imposta la nuova vista come le variazioni dello step cliccato
       setCurrentStrategyView(item.variations);
     }
-    // Se lo step non ha variazioni, non fa nulla (o potresti aggiungere un'azione specifica se necessario)
+    // Se lo step non ha variazioni, non fa nulla
   };
 
   // Funzione per tornare al livello precedente nello storico
@@ -226,9 +226,6 @@ function App() {
 
   const currentTeamData = selectedMember?.teams?.[selectedTeam];
   const pokemonNamesForSelectedTeam = currentTeamData?.pokemonNames || [];
-  // Non abbiamo più bisogno di pokemonStrategy qui, la carichiamo in handlePokemonCardClick
-  // const pokemonStrategiesForSelectedTeam = currentTeamData?.pokemonStrategies || {};
-  // const pokemonStrategy = pokemonStrategiesForSelectedTeam[selectedPokemon?.name] || [];
 
   const selectedPokemonData = pokemonData.find(
     (p) => p.name === selectedPokemon?.name
@@ -347,7 +344,20 @@ function App() {
               }`}
               onClick={() => handleTeamClick(teamName)}
             >
-              <p className="team-name">{teamName}</p>
+              {teamName === "Team 1" ? (
+                <a
+                  href="https://pokepast.es/a3bee7499d07b81e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="team-name-link"
+                >
+                  <p className="team-name" style={{ color: "white" }}>
+                    {teamName}
+                  </p>
+                </a>
+              ) : (
+                <p className="team-name">{teamName}</p>
+              )}
             </div>
           ))}
         </div>
@@ -395,7 +405,6 @@ function App() {
                   return (
                     <PokemonCard
                       key={index}
-                      // Passiamo un oggetto placeholder per la coerenza con handlePokemonCardClick
                       onClick={() =>
                         handlePokemonCardClick({ name: pokemonName, types: [] })
                       }
