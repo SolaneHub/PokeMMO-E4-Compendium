@@ -26,9 +26,8 @@ function App() {
   // Nuovo stato per tenere traccia dello storico dei livelli visitati (per il tasto "Indietro")
   const [strategyHistory, setStrategyHistory] = useState([]);
 
-  // Definisci le parole chiave da colorare e le loro classi CSS
   const colorKeywords = {
-    // Nomi di mosse/strumenti (dalla strategia di Lorelei)
+    // Nomi di mosse/strumenti
     "Stealth Rock": "move-item-color",
     "Calm Mind": "move-item-color",
     "X Speed": "move-item-color",
@@ -44,7 +43,7 @@ function App() {
     Swap: "move-item-color",
     swap: "action-color",
 
-    // Aggiungi altre parole chiave se necessario
+    // Altre parole chiave
     Enemy: "action-color",
     use: "action-color",
     Baiting: "action-color",
@@ -307,7 +306,7 @@ function App() {
                   onClick={
                     hasVariations ? () => handleStepClick(item) : undefined
                   } // Chiama handleStepClick solo se ha variazioni
-                  style={{ cursor: hasVariations ? "pointer" : "default" }} // Cambia cursore solo se navigabile
+                  style={{ cursor: hasVariations ? "pointer" : "default" }}
                 >
                   <p>{formattedText}</p>
                   {/* Icona per indicare che si può navigare in un sotto-livello */}
@@ -317,7 +316,6 @@ function App() {
                     </span>
                   )}
                 </div>
-                {/* Le variazioni annidate non vengono più renderizzate qui */}
               </div>
             );
           }
