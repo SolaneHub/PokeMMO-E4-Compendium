@@ -56,10 +56,10 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 ## 🔮 TODO
 
-* [ ] Full TailwindCSS integration
-* [ ] Implementing routes for all pokemons (Kanto, Hoenn, Sinnoh, Unova)
-* [ ] Implementing more teams for variety of clears
-* [ ] Multi-language support
+* [ ] Fully integrate Tailwind CSS for consistent and modern UI styling
+* [ ] Develop full route coverage and strategic breakdowns for each region (Kanto, Hoenn, Sinnoh, Unova)
+* [ ] Expand team options to accommodate diverse strategies and playstyles
+* [ ] Add multilingual support (e.g., English, Italian) for broader accessibility
 
 ---
 
