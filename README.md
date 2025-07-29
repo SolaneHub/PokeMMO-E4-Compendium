@@ -16,7 +16,15 @@ This site walks players step-by-step with tips, strategies, and suggested teams 
 
 ### 🌐 Frontend
 
-![Homepage Screenshot](./screenshots/home.png)
+#### 🏠 Homepage
+
+![Homepage Screenshot](./screenshots/frontend-home.png)
+
+---
+
+#### 🔍 Pokémon Selection
+
+![Pokemon Selection Screenshot](./screenshots/pokemon-selection.png)
 
 ---
 
