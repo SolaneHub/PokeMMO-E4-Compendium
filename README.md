@@ -1,12 +1,44 @@
-# React + Vite
+# 🏆 Pokemmo Elite 4 Compendium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Guida interattiva e dettagliata per affrontare e sconfiggere i Superquattro di **Pokemmo**.
+Il sito accompagna passo dopo passo il giocatore con consigli, strategie e team suggeriti per ogni Lega Pokémon.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚙️ Tecnologie usate
 
-## Expanding the ESLint configuration
+* [React](https://reactjs.org/)
+* [Tailwind CSS](https://tailwindcss.com/) (installato, in fase di integrazione)
+* Backend (specifica il linguaggio/framework se presente)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📸 Screenshot
+
+### 🌐 Frontend
+
+> *(Inserisci qui una o più immagini del frontend)*
+> Esempio:
+> ![Homepage Screenshot](./screenshots/frontend-home.png)
+
+### 🖥️ Backend
+
+> *(Inserisci qui uno screen del backend se applicabile, anche in console o su Postman)*
+> Esempio:
+> ![API Screenshot](./screenshots/backend-api.png)
+
+---
+
+## 📁 Struttura progetto
+
+```bash
+/pokemmo-elite4-compendium
+├── /src
+│   ├── /components
+│   ├── /pages
+│   ├── /assets
+│   ├── App.jsx
+│   └── index.js
+├── tailwind.config.js
+└── package.json
+```
