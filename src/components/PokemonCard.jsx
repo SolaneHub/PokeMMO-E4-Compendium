@@ -1,7 +1,11 @@
-import React from 'react';
-import '../App.css';
+import "../App.css";
 
-const PokemonCard = ({ pokemonName, pokemonImageSrc, onClick, nameBackground }) => {
+const PokemonCard = ({
+  pokemonName,
+  pokemonImageSrc,
+  onClick,
+  nameBackground,
+}) => {
   const handleImageError = (e) => {
     e.target.onerror = null;
     e.target.src = `https://placehold.co/80x80/cccccc/333333?text=?`;
@@ -23,15 +27,17 @@ const PokemonCard = ({ pokemonName, pokemonImageSrc, onClick, nameBackground }) 
           onError={handleImageError}
         />
       ) : (
-        <div style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '2rem',
-            color: '#b0b3b8'
-          }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "2rem",
+            color: "#b0b3b8",
+          }}
+        >
           ?
         </div>
       )}

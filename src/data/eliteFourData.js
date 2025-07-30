@@ -1,15 +1,13 @@
-// src/data/eliteFourData.js
-
 // Importa le immagini dei membri degli Superquattro di Kanto dalla cartella assets
 import loreleiImage from "../assets/elite4/LoreleiLGPE.png";
-import brunoImage from "../assets/elite4/BrunoLGPE.png"; // Corretto percorso
+import brunoImage from "../assets/elite4/BrunoLGPE.png";
 import agathaImage from "../assets/elite4/AgathaLGPE.png";
 import lanceImage from "../assets/elite4/LanceLGPE.png";
 import blueImage from "../assets/elite4/BluLGPE.png";
 
 // Importa le immagini dei membri degli Superquattro di Johto dalla cartella assets
 import willImage from "../assets/elite4/WillHGSS.png";
-import kogaImage from "../assets/elite4/KogaLGPE.png"; // Mantenuto LGPE come nell'originale
+import kogaImage from "../assets/elite4/KogaLGPE.png";
 import karenImage from "../assets/elite4/KarenHGSS.png";
 
 // Importa le immagini dei membri degli Superquattro di Hoenn dalla cartella assets
@@ -41,10 +39,8 @@ export const eliteFourMembers = [
     type: "Ghiaccio",
     image: loreleiImage,
     pokemonCardCount: 19,
-    // Nuova struttura per i team
     teams: {
       "Team 1": {
-        // Il tuo team attuale (o un team predefinito)
         pokemonNames: [
           "Articuno",
           "Bronzong",
@@ -68,105 +64,151 @@ export const eliteFourMembers = [
         ].sort(),
         pokemonStrategies: {
           Articuno: [
-            // Primo step principale
             {
-              type: "step",
+              type: "main", // Modificato il tipo per la strategia principale
               player:
-                "Stealth Rock, Claydol swap,\n Swap to Chandelure,\n 3x Calm Mind + X Speed.",
+                "Stealth Rock, Claydol swap, Swap to Chandelure, 3x Calm Mind + X Speed.",
               variations: [
-                // Aggiunto array di variazionis
                 {
-                  type: "step",
-                  player:
-                    "If Claydol swaps into Lapras,\n Swap to Blissey (Baiting Lucario),\n Trick,\n Swap to Chandelure,\n 3x Calm Mind + X Speed.",
+                  name: "Lapras Swap Route", // Aggiunto il nome della variazione
+                  steps: [ // Le variazioni ora contengono un array di step
+                    {
+                      type: "step",
+                      player:
+                        "If Claydol swaps into Lapras, Swap to Blissey (Baiting Lucario), Trick, Swap to Chandelure, 3x Calm Mind + X Speed.",
+                    },
+                  ],
                 },
               ],
             },
           ],
           Bronzong: [
             {
-              type: "step",
+              type: "main", // Modificato il tipo per la strategia principale
               player: "Trick",
               variations: [
-                // Aggiunto array di variazioni
                 {
-                  type: "step",
-                  player:
-                    "Bronzong uses Earthquake, \n Swap to Excadrill,\n Stealth Rock,\n 3x Swords Dance + X Speed.",
-                },
-                {
-                  type: "step",
-                  player: "Bronzong uses Gyro Ball,\n Swap to Poliwrath,",
-                  variations: [
+                  name: "Earthquake Route", // Nome della variazione
+                  steps: [
                     {
                       type: "step",
                       player:
-                        "Lapras comes out,\n Belly Drum;\n Golduck is sent out, let it use Toxic on you then use Ice Punch on Vileplume",
+                        "Bronzong uses Earthquake, Swap to Excadrill, Stealth Rock, 3x Swords Dance + X Speed.",
+                    },
+                  ],
+                },
+                {
+                  name: "Gyro Ball", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player: "Bronzong uses Gyro Ball, Swap to Poliwrath,",
+                    },
+                    {
+                      type: "step",
+                      player:
+                        "Lapras comes out, Belly Drum; Golduck is sent out, let it use Toxic on you then use Ice Punch on Vileplume",
                     },
                     {
                       type: "step",
                       player:
                         "if opponent swaps to Vileplume, switch to Blissey and use Trick",
-                      variations: [
-                        {
-                          type: "step",
-                          player:
-                            "if opponent does not swap out, switch to Excadrill 2x Swords Dance",
-                          variations: [
-                            {
-                              type: "step",
-                              player:
-                                "if opponent switches out into Dewgong while you are setting up, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Drain Punch), then use Ice Punch on Vileplume",
-                            },
-                            {
-                              type: "step",
-                              player:
-                                "if opponent switches out into Lapras comes out, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Belly Drum), then use Ice Punch on Vileplume",
-                            },
-                          ],
-                        },
-                      ],
+                    },
+                    {
+                      type: "step",
+                      player:
+                        "if opponent does not swap out, switch to Excadrill 2x Swords Dance",
+                    },
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches out into Dewgong while you are setting up, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Drain Punch), then use Ice Punch on Vileplume",
+                    },
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches out into Lapras comes out, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Belly Drum), then use Ice Punch on Vileplume",
                     },
                   ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches out into Chansey, switch to Chandelure 5x Calm Mind + X.Speed",
+                  name: "Chansey", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches out into Chansey, switch to Chandelure 5x Calm Mind + X.Speed",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches into Dragonite, use Stealth Rock;",
+                  name: "Dragonite", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches into Dragonite, use Stealth Rock;",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches to Golduck, switch to Poliwrath then switch into second Metagross. Use Trick as Lapras comes out to lock in Drill Run. Switch to Excadrill: 2x Swords Dance + X.Speed",
+                  name: "Golduck", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches to Golduck, switch to Poliwrath then switch into second Metagross. Use Trick as Lapras comes out to lock in Drill Run. Switch to Excadrill: 2x Swords Dance + X.Speed",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches into Hariyama, switch to Chandelure 4x Calm Mind + X.Speed",
+                  name: "Hariyama", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches into Hariyama, switch to Chandelure 4x Calm Mind + X.Speed",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player: "if opponent switches into Lapras",
+                  name: "Lapras", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player: "if opponent switches into Lapras",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches into Nidoking, switch to Excadrill 2x Swords Dance + X.Speed",
+                  name: "Nidoking", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches into Nidoking, switch to Excadrill 2x Swords Dance + X.Speed",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches out into Slowbro, use Stealth Rock then switch to Chandelure",
+                  name: "Slowbro", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches out into Slowbro, use Stealth Rock then switch to Chandelure",
+                    },
+                  ],
                 },
                 {
-                  type: "step",
-                  player:
-                    "if opponent switches into Vileplume, switch to Chandelure 6x Calm Mind + X.Speed",
+                  name: "Vileplume", // Nome della variazione
+                  steps: [
+                    {
+                      type: "step",
+                      player:
+                        "if opponent switches into Vileplume, switch to Chandelure 6x Calm Mind + X.Speed",
+                    },
+                  ],
                 },
               ],
             },
@@ -211,17 +253,12 @@ export const eliteFourMembers = [
         pokemonStrategies: {},
       },
     },
-    tips: [
-      "Lorelei usa principalmente Pokémon di tipo Ghiaccio e Acqua.",
-      "Molti dei suoi Pokémon hanno alta Difesa Speciale.",
-      "Considera l'uso di attacchi di tipo Elettro o Roccia.",
-    ],
   },
   {
     name: "Bruno",
     region: "Kanto",
     type: "Lotta",
-    image: brunoImage, // Riutilizzo l'immagine di Bruno da Kanto
+    image: brunoImage,
     pokemonCardCount: 24,
     teams: {
       "Team 1": {
@@ -258,10 +295,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Bruno si concentra su Pokémon di tipo Lotta e Roccia.",
-      "I tipi Volante, Psico e Acqua sono efficaci contro di lui.",
-    ],
   },
   {
     name: "Agatha",
@@ -301,11 +334,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Agatha usa Pokémon di tipo Spettro e Veleno.",
-      "I tipi Spettro e Psico sono super efficaci.",
-      "Fai attenzione alle mosse di stato come Parassiseme e Tossina.",
-    ],
   },
   {
     name: "Lance",
@@ -346,11 +374,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Lance è specializzato in Pokémon di tipo Drago.",
-      "I tipi Ghiaccio e Drago sono le sue principali debolezze.",
-      "Preparati ad affrontare Dragonite potenti.",
-    ],
   },
   {
     name: "Blue",
@@ -398,11 +421,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Il team di Blue è molto vario.",
-      "Non ha una debolezza di tipo singola.",
-      "Analizza il suo team specifico in base al tuo starter.",
-    ],
   },
 
   // --- Superquattro di Johto ---
@@ -450,16 +468,12 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Will usa Pokémon di tipo Psico.",
-      "I tipi Coleottero, Spettro e Buio sono efficaci.",
-    ],
   },
   {
     name: "Koga",
     region: "Johto",
     type: "Veleno",
-    image: kogaImage, // Mantenuto LGPE come nell'originale
+    image: kogaImage,
     pokemonCardCount: 35,
     teams: {
       "Team 1": {
@@ -507,17 +521,12 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Koga è specializzato in Pokémon di tipo Veleno.",
-      "I tipi Terra e Psico sono le sue debolezze principali.",
-      "Fai attenzione alle sue tattiche basate sulle alterazioni di stato.",
-    ],
   },
   {
     name: "Bruno",
     region: "Johto",
     type: "Lotta",
-    image: brunoImage, // Riutilizzo l'immagine di Bruno da Kanto
+    image: brunoImage,
     pokemonCardCount: 27,
     teams: {
       "Team 1": {
@@ -557,10 +566,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Il team di Bruno a Johto è simile a quello di Kanto, con l'aggiunta di Hitmontop.",
-      "Le stesse debolezze (Volante, Psico, Acqua) si applicano.",
-    ],
   },
   {
     name: "Karen",
@@ -608,17 +613,12 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Karen è specializzata in Pokémon di tipo Buio.",
-      "I tipi Lotta, Coleottero e (pre-Gen 6) Spettro sono efficaci.",
-      "Il suo Houndoom è particolarmente potente.",
-    ],
   },
   {
     name: "Lance",
     region: "Johto",
     type: "Drago",
-    image: lanceImage, // Riutilizzo l'immagine di Lance da Kanto
+    image: lanceImage,
     pokemonCardCount: 24,
     teams: {
       "Team 1": {
@@ -655,11 +655,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Il team di Lance Campione è ancora più forte.",
-      "Ha tre Dragonite!",
-      "Kingdra è un avversario temibile con il suo tipo Acqua/Drago.",
-    ],
   },
 
   // --- Superquattro di Hoenn ---
@@ -708,10 +703,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Sidney usa Pokémon di tipo Buio.",
-      "I tipi Lotta, Coleottero e (pre-Gen 6) Spettro sono efficaci.",
-    ],
   },
   {
     name: "Phoebe",
@@ -751,11 +742,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Phoebe è specializzata in Pokémon di tipo Spettro.",
-      "I tipi Spettro e Buio sono efficaci.",
-      "Fai attenzione a Sableye, che non ha debolezze pre-Gen 6.",
-    ],
   },
   {
     name: "Glacia",
@@ -792,11 +778,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Glacia usa Pokémon di tipo Ghiaccio.",
-      "I tipi Fuoco, Lotta, Roccia e Acciaio sono super efficaci.",
-      "Walrein è un avversario resistente.",
-    ],
   },
   {
     name: "Drake",
@@ -836,11 +817,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Drake è specializzato in Pokémon di tipo Drago.",
-      "I tipi Ghiaccio e Drago sono le sue debolezze.",
-      "Salamence è un avversario molto potente.",
-    ],
   },
   {
     name: "Wallace",
@@ -881,11 +857,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Wallace è specializzato in Pokémon di tipo Acqua.",
-      "I tipi Erba e Elettro sono le sue debolezze.",
-      "Milotic è molto resistente e può recuperare PS.",
-    ],
   },
 
   // --- Superquattro di Sinnoh ---
@@ -932,11 +903,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Aaron usa Pokémon di tipo Coleottero.",
-      "I tipi Volante, Roccia e Fuoco sono efficaci.",
-      "Fai attenzione a Drapion, che è Coleottero/Buio e non ha la debolezza Roccia.",
-    ],
   },
   {
     name: "Bertha",
@@ -982,11 +948,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Bertha è specializzata in Pokémon di tipo Terra.",
-      "I tipi Acqua, Erba e Ghiaccio sono le sue debolezze.",
-      "Hippowdon può impostare la Sandstorm.",
-    ],
   },
   {
     name: "Flint",
@@ -1032,10 +993,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Flint usa Pokémon di tipo Fuoco (anche se il suo team originale in D/P non era solo Fuoco).",
-      "I tipi Acqua, Terra e Roccia sono efficaci.",
-    ],
   },
   {
     name: "Lucian",
@@ -1076,11 +1033,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Lucian è specializzato in Pokémon di tipo Psico.",
-      "I tipi Coleottero, Spettro e Buio sono efficaci.",
-      "Bronzong ha l'abilità Levitazione o Antifuoco, fai attenzione al suo tipo secondario Acciaio.",
-    ],
   },
   {
     name: "Cynthia",
@@ -1129,11 +1081,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Cynthia ha un team molto equilibrato e potente.",
-      "Il suo Garchomp è noto per essere estremamente veloce e forte.",
-      "Non ha una singola debolezza di tipo da sfruttare facilmente.",
-    ],
   },
 
   // --- Superquattro di Unima ---
@@ -1177,11 +1124,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Shauntal usa Pokémon di tipo Spettro.",
-      "I tipi Spettro e Buio sono efficaci.",
-      "Chandelure ha un altissimo Attacco Speciale.",
-    ],
   },
   {
     name: "Grimsley",
@@ -1224,11 +1166,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Grimsley è specializzato in Pokémon di tipo Buio.",
-      "I tipi Lotta e Coleottero sono efficaci.",
-      "Scrafty è Buio/Lotta e Bisharp è Buio/Acciaio, fai attenzione ai loro doppi tipi.",
-    ],
   },
   {
     name: "Caitlin",
@@ -1276,11 +1213,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Caitlin usa Pokémon di tipo Psico.",
-      "I tipi Coleottero, Spettro e Buio sono efficaci.",
-      "Metagross è Psico/Acciaio, con debolezze diverse.",
-    ],
   },
   {
     name: "Marshal",
@@ -1316,7 +1248,7 @@ export const eliteFourMembers = [
           "Throh",
           "Toxicroak",
           "Tyranitar",
-          "Metagross", // Aggiunto Metagross
+          "Metagross",
         ].sort(),
         pokemonStrategies: {},
       },
@@ -1325,11 +1257,6 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Marshal è specializzato in Pokémon di tipo Lotta.",
-      "I tipi Volante, Psico e (pre-Gen 6) Spettro sono efficaci.",
-      "I suoi Pokémon hanno alta Attacco e Velocità.",
-    ],
   },
   {
     name: "Alder",
@@ -1372,9 +1299,5 @@ export const eliteFourMembers = [
       "Team 4": { pokemonNames: [], pokemonStrategies: {} },
       "Team 5": { pokemonNames: [], pokemonStrategies: {} },
     },
-    tips: [
-      "Alder ha un team vario e potente.",
-      "Volcarona è il suo Pokémon più forte e può spazzare via team interi con Danzaspada o Calmamente.",
-    ],
   },
 ];

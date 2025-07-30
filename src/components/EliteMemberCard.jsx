@@ -1,14 +1,21 @@
-import React from "react";
 import "../App.css";
 
-const EliteMemberCard = ({ member, onMemberClick, isSelected, background, shadowColor }) => {
+const EliteMemberCard = ({
+  member,
+  onMemberClick,
+  isSelected,
+  background,
+  shadowColor,
+}) => {
   return (
     <div
       className={`card ${isSelected ? "selected" : ""}`}
       onClick={() => onMemberClick(member)}
       style={isSelected ? { boxShadow: `0 4px 10px ${shadowColor}aa` } : {}}
     >
-      <p className="elite4-name" style={{ background: background }}>{member.name}</p>
+      <p className="elite4-name" style={{ background: background }}>
+        {member.name}
+      </p>
 
       <img
         src={member.image}
