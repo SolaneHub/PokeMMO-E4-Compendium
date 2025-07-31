@@ -164,11 +164,11 @@ function App() {
       if (strategyHistory.length === 0) {
         // Siamo nella vista principale e non c'è strategia
         return (
-          <p>Nessuna strategia dettagliata disponibile per questo Pokémon.</p>
+          <p>No strategy details available for this pokemon.</p>
         );
       } else {
         // Siamo in una variazione, ma il contenuto è vuoto
-        return <p>Nessun dettaglio disponibile per questa variazione.</p>;
+        return <p>No details available for this variation.</p>;
       }
     }
 
