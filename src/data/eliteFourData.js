@@ -67,15 +67,16 @@ export const eliteFourMembers = [
             {
               type: "main", // Modificato il tipo per la strategia principale
               player:
-                "Stealth Rock, Claydol swap, Swap to Chandelure, 3x Calm Mind + X Speed.",
+                "Stealth Rock, Swap to Chandelure, 3x Calm Mind + X Speed.",
               variations: [
                 {
-                  name: "Lapras Swap Route", // Aggiunto il nome della variazione
-                  steps: [ // Le variazioni ora contengono un array di step
+                  name: "Claydol Swap", // Aggiunto il nome della variazione
+                  steps: [
+                    // Le variazioni ora contengono un array di step
                     {
                       type: "step",
                       player:
-                        "If Claydol swaps into Lapras, Swap to Blissey (Baiting Lucario), Trick, Swap to Chandelure, 3x Calm Mind + X Speed.",
+                        "Swap to Blissey, Trick, Swap to Chandelure, 3x Calm Mind + X Speed.",
                     },
                   ],
                 },
@@ -88,51 +89,98 @@ export const eliteFourMembers = [
               player: "Trick",
               variations: [
                 {
-                  name: "Earthquake Route", // Nome della variazione
+                  name: "Earthquake Move", // Nome della variazione
                   steps: [
                     {
                       type: "step",
                       player:
-                        "Bronzong uses Earthquake, Swap to Excadrill, Stealth Rock, 3x Swords Dance + X Speed.",
+                        "Swap to Excadrill, Stealth Rock, 3x Swords Dance + X Speed.",
                     },
                   ],
                 },
                 {
-                  name: "Gyro Ball", // Nome della variazione
+                  name: "Gyro Ball Move", // Nome della variazione
                   steps: [
                     {
-                      type: "step",
-                      player: "Bronzong uses Gyro Ball, Swap to Poliwrath,",
-                    },
-                    {
-                      type: "step",
-                      player:
-                        "Lapras comes out, Belly Drum; Golduck is sent out, let it use Toxic on you then use Ice Punch on Vileplume",
-                    },
-                    {
-                      type: "step",
-                      player:
-                        "if opponent swaps to Vileplume, switch to Blissey and use Trick",
-                    },
-                    {
-                      type: "step",
-                      player:
-                        "if opponent does not swap out, switch to Excadrill 2x Swords Dance",
-                    },
-                    {
-                      type: "step",
-                      player:
-                        "if opponent switches out into Dewgong while you are setting up, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Drain Punch), then use Ice Punch on Vileplume",
-                    },
-                    {
-                      type: "step",
-                      player:
-                        "if opponent switches out into Lapras comes out, switch to Poliwrath Belly Drum. if Golduck is sent out, let it use Toxic on you (use Belly Drum), then use Ice Punch on Vileplume",
+                      type: "main",
+                      player: "Swap to Poliwrath",
+                      variations: [
+                        {
+                          name: "Bronzong Swaps to Lapras",
+                          steps: [
+                            {
+                              type: "step",
+                              player:
+                                "Belly Drum, Tank Golduck Toxic, Ice Punch Vileplume",
+                            },
+                          ],
+                        },
+                        {
+                          name: "Bronzong Swaps to Vileplume",
+                          steps: [
+                            {
+                              type: "main",
+                              player: "Swap to Blissey, Trick",
+                              variations: [
+                                {
+                                  name: "Vileplume Stays",
+                                  steps: [
+                                    {
+                                      type: "main",
+                                      player: [
+                                        "Swap to Excadrill, 2x Sword Dance",
+                                      ],
+                                      variations: [
+                                        {
+                                          name: "Vileplume Swaps to Dewgong",
+                                          steps: [
+                                            {
+                                              type: "main",
+                                              player: [
+                                                "Swap to Poliwrath, Belly Drum",
+                                              ],
+                                              variations: [
+                                                {
+                                                  name: "Dewgong Swaps to Golduck",
+                                                  steps: [
+                                                    {
+                                                      type: "main",
+                                                      player: [
+                                                        "Tank Toxic, Drain Punch, Ice Punch Vileplume",
+                                                      ],
+                                                    },
+                                                  ],
+                                                },
+                                              ],
+                                            },
+                                          ],
+                                        },
+                                        {
+                                          name: "Vileplume Swaps to Lapras",
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
+                                {
+                                  name: "Vileplume Swaps to Dewgong",
+                                  steps: [
+                                    {
+                                      type: "step",
+                                      player: "Swap to Poliwrath, Belly Drum",
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
-                  name: "Chansey", // Nome della variazione
+                  name: "Chansey Swap", // Nome della variazione
                   steps: [
                     {
                       type: "step",
@@ -142,7 +190,7 @@ export const eliteFourMembers = [
                   ],
                 },
                 {
-                  name: "Dragonite", // Nome della variazione
+                  name: "Dragonite Swap", // Nome della variazione
                   steps: [
                     {
                       type: "step",
