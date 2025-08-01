@@ -163,9 +163,7 @@ function App() {
       // Controlla se siamo nella vista principale o in una variazione
       if (strategyHistory.length === 0) {
         // Siamo nella vista principale e non c'è strategia
-        return (
-          <p>No strategy details available for this pokemon.</p>
-        );
+        return <p>No strategy details available for this pokemon.</p>;
       } else {
         // Siamo in una variazione, ma il contenuto è vuoto
         return <p>No details available for this variation.</p>;
@@ -173,7 +171,8 @@ function App() {
     }
 
     // Determina se stiamo visualizzando la strategia principale (un singolo oggetto di tipo "main")
-    const isMainStrategyView = strategy.length === 1 && strategy[0].type === "main";
+    const isMainStrategyView =
+      strategy.length === 1 && strategy[0].type === "main";
 
     return (
       <div className="strategy-content-list">
@@ -191,15 +190,17 @@ function App() {
               <p>{colorizeStrategyText(strategy[0].player)}</p>
             </div>
             {strategy[0].variations && strategy[0].variations.length > 0 && (
-              <div className="main-strategy-variations-list"> {/* Nuovo contenitore per le variazioni */}
+              <div className="main-strategy-variations-list">
+                {" "}
+                {/* Nuovo contenitore per le variazioni */}
                 {strategy[0].variations.map((variation, varIndex) => (
                   <div
                     key={varIndex}
                     className="strategy-variation-as-button" // Nuova classe per le variazioni stilizzate come bottoni
                     onClick={() => handleStepClick(variation)}
                   >
-                    <p>{colorizeStrategyText(variation.name)}</p> {/* Mostra il nome della variazione */}
-                    
+                    <p>{colorizeStrategyText(variation.name)}</p>{" "}
+                    {/* Mostra il nome della variazione */}
                   </div>
                 ))}
               </div>
@@ -209,7 +210,11 @@ function App() {
           // Renderizza i singoli step (quando si visualizzano i passaggi di una specifica variazione)
           strategy.map((item, index) => {
             if (!item || !item.type) {
-              console.warn("Skipping invalid item in strategy content at index:", index, item);
+              console.warn(
+                "Skipping invalid item in strategy content at index:",
+                index,
+                item
+              );
               return null;
             }
             // Qui, 'item' dovrebbe essere sempre di tipo "step"
@@ -344,8 +349,7 @@ function App() {
               })
             ) : (
               <p>
-                Nessun Pokémon definito per il {selectedTeam} di{" "}
-                {selectedMember.name}.
+                No pokemon defined for {selectedTeam} of {selectedMember.name}.
               </p>
             )}
           </div>
