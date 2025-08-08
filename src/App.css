@@ -546,9 +546,15 @@ p {
   justify-content: center;
 }
 
+.main-strategy-variations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .main-strategy-variations-list p {
   align-items: center;
-  color: #66ff99;
+  color: white;
   text-align: center;
   gap: 8px;
 }
