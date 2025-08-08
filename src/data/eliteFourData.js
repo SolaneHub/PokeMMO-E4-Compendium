@@ -166,7 +166,7 @@ export const eliteFourMembers = [
                                   steps: [
                                     {
                                       type: "step",
-                                      player: "Switch to Poliwrath, Belly Drum",
+                                      player: "🔄 Switch to Poliwrath ➡️ Belly Drum",
                                     },
                                   ],
                                 },
