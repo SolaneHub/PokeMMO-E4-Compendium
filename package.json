@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://solanehub.github.io/PokeMMO-E4-Compendium/",
+  "homepage": "https://solanehub.github.io/PokeMMO-Compendium/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

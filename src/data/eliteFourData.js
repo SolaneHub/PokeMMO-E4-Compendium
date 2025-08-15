@@ -66,16 +66,17 @@ export const eliteFourMembers = [
           Articuno: [
             {
               type: "main", // Modificato il tipo per la strategia principale
-              player: "Stealth Rock ➡️ Chandelure ➡️ 3x Calm Mind ➡️ X Speed",
+              player:
+                "1️⃣ First 🪤 Stealth Rock 🔄 switch to 🕯️ Chandelure 🧠 use 3x Calm Mind 🧪 give X Speed",
               variations: [
                 {
-                  name: "🔄 Claydol switches in", // Aggiunto il nome della variazione
+                  name: "🔄 Articuno switches to Claydol ", // Aggiunto il nome della variazione
                   steps: [
                     // Le variazioni ora contengono un array di step
                     {
                       type: "step",
                       player:
-                        "Blissey ➡️ Trick ➡️ Chandelure ➡️ 3x Calm Mind ➡️ X Speed",
+                        "🔄 Switch to 🥚 Blissey 🔁 use Trick 🔄 switch to 🕯️ Chandelure 🧠 use 3x Calm Mind 🧪 give X Speed",
                     },
                   ],
                 },
@@ -85,32 +86,34 @@ export const eliteFourMembers = [
           Bronzong: [
             {
               type: "main", // Modificato il tipo per la strategia principale
-              player: "🎯 Trick",
+              player: "1️⃣ First 🔁 Trick",
               variations: [
                 {
-                  name: "❗Bronzong uses Earthquake", // Nome della variazione
+                  type: "step",
+                  name: "💥 Earthquake", // Nome della variazione
                   steps: [
                     {
                       type: "step",
                       player:
-                        "Excadrill ➡️ Stealth Rock ➡️ 3x Swords Dance ➡️ X Speed",
+                        "🔄 Switch to ⛏️ Excadrill 🪤 use Stealth Rock 💪 use 3x Swords Dance 🧪 give X Speed",
                     },
                   ],
                 },
                 {
-                  name: "❗Bronzong uses Gyro Ball", // Nome della variazione
+                  name: "💥 Gyro Ball", // Nome della variazione
                   steps: [
                     {
                       type: "main",
                       player: "🔄 Switch to Poliwrath",
                       variations: [
                         {
+                          type: "step",
                           name: "🔄 Bronzong switches to Lapras",
                           steps: [
                             {
                               type: "step",
                               player:
-                                "Belly Drum ➡️ Tank Golduck Toxic ➡️ Ice Punch Vileplume",
+                                "💪 Use Belly Drum 🛡️ tank Golduck ☠️ Toxic 💥 Ice Punch Vileplume",
                             },
                           ],
                         },
@@ -119,43 +122,39 @@ export const eliteFourMembers = [
                           steps: [
                             {
                               type: "main",
-                              player: "🔄 Switch to Blissey ➡️ Trick",
+                              player: "🔄 Switch to Blissey 🔁 use Trick",
                               variations: [
                                 {
-                                  name: "✅ Vileplume Stays",
+                                  type: "step",
+                                  name: "✔️ Vileplume Stays",
                                   steps: [
                                     {
                                       type: "main",
                                       player: [
-                                        "🔄 Switch to Excadrill ➡️ 2x Sword Dance",
+                                        "🔄 Switch to Excadrill 💪 use 2x Sword Dance",
                                       ],
                                       variations: [
                                         {
+                                          type: "step",
                                           name: "🔄 Vileplume switches to Dewgong",
                                           steps: [
                                             {
                                               type: "main",
-                                              player: [
-                                                "🔄 Switch to Poliwrath ➡️ Belly Drum",
-                                              ],
-                                              variations: [
-                                                {
-                                                  name: "🔄 Dewgong switches to Golduck",
-                                                  steps: [
-                                                    {
-                                                      type: "main",
-                                                      player: [
-                                                        "Tank Toxic ➡️ Drain Punch ➡️ Ice Punch Vileplume",
-                                                      ],
-                                                    },
-                                                  ],
-                                                },
-                                              ],
+                                              player:
+                                                "🔄 Switch to Poliwrath 💪 use Belly Drum (❓ if Golduck switches in 🛡️ tank ☠️ Toxic) 💥 use Drain Punch 💥 Ice Punch Vileplume",
                                             },
                                           ],
                                         },
                                         {
+                                          type: "step",
                                           name: "🔄 Vileplume switches to Lapras",
+                                          steps: [
+                                            {
+                                              type: "step",
+                                              player:
+                                                "🔄 Switch to Poliwrath 💪 use Belly Drum (❓ if Golduck switches in 🛡️ tank ☠️ Toxic) 💥 use Drain Punch 💥 Ice Punch Vileplume",
+                                            },
+                                          ],
                                         },
                                       ],
                                     },
@@ -165,8 +164,9 @@ export const eliteFourMembers = [
                                   name: "🔄 Vileplume switches to Dewgong",
                                   steps: [
                                     {
-                                      type: "step",
-                                      player: "🔄 Switch to Poliwrath ➡️ Belly Drum",
+                                      type: "main",
+                                      player:
+                                        "🔄 Switch to Poliwrath 💪 use Belly Drum (❓ if Golduck switches in 🛡️ tank ☠️ Toxic) 💥 use Drain Punch 💥 Ice Punch Vileplume",
                                     },
                                   ],
                                 },
@@ -179,56 +179,91 @@ export const eliteFourMembers = [
                   ],
                 },
                 {
-                  name: "🔄 Chansey switches in", // Nome della variazione
+                  name: "🔄 Chansey", // Nome della variazione
+                  steps: [
+                    {
+                      type: "main",
+                      player:
+                        "🔄 Switch to Chandelure 🟢 use 5x Calm Mind 🧪 give X Speed",
+                      variations: [
+                        {
+                          type: "step",
+                          name: "🔄 Chansey switches into Mantine",
+                          steps: [
+                            {
+                              type: "step",
+                              player:
+                                "🔄 Switch to Metagross 🟢 use Trick 🔄 Switch to Excadrill 🟢 use Stealth Rock 🟢 use 3x Swords Dance 🧪 give X Speed",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  name: "🔄 Dragonite", // Nome della variazione
+                  steps: [
+                    {
+                      type: "main",
+                      player:
+                        "🟢 Use Stealth Rock 🔄 switch to Blissey 🟢 use Trick 🔄 switch to Chandelure 🟢 use 3x Calm Mind 🧪 give X Speed",
+                    },
+                  ],
+                },
+                {
+                  name: "🔄 Golduck", // Nome della variazione
                   steps: [
                     {
                       type: "step",
                       player:
-                        "if opponent switches out into Chansey, switch to Chandelure 5x Calm Mind + X.Speed",
+                        "🔄 Switch to Poliwrath 🟢 use Belly Drum 🧪 give X Speed",
                     },
                   ],
                 },
                 {
-                  name: "🔄 Dragonite switches in", // Nome della variazione
+                  name: "🔄 Hariyama", // Nome della variazione
                   steps: [
                     {
                       type: "step",
                       player:
-                        "if opponent switches into Dragonite, use Stealth Rock;",
+                        "🔄 Switch to Chandelure 🟢 use 4x Calm Mind 🧪 give X Speed",
                     },
                   ],
                 },
                 {
-                  name: "🔄 Golduck switches in", // Nome della variazione
+                  name: "🔄 Lapras", // Nome della variazione
                   steps: [
                     {
-                      type: "step",
-                      player:
-                        "if opponent switches to Golduck, switch to Poliwrath then switch into second Metagross. Use Trick as Lapras comes out to lock in Drill Run. Switch to Excadrill: 2x Swords Dance + X.Speed",
+                      variations: [
+                        {
+                          type: "step",
+                          name: "🎒 you get Expert Belt",
+                          steps: [
+                            {
+                              type: "step",
+                              player:
+                                "🔄 switch to Excadrill 🟢 use 2x Swords Dance",
+                            },
+                          ],
+                        },
+                        {
+                          type: "step",
+                          name: "🎒 you get Rocky Helmet",
+                          steps: [
+                            {
+                              type: "step",
+                              player:
+                                "🔄 Switch to Poliwrath 🟢 Belly Drum 🧪 give X Speed",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
-                  name: "🔄 Hariyama switches in", // Nome della variazione
-                  steps: [
-                    {
-                      type: "step",
-                      player:
-                        "if opponent switches into Hariyama, switch to Chandelure 4x Calm Mind + X.Speed",
-                    },
-                  ],
-                },
-                {
-                  name: "🔄 Lapras switches in", // Nome della variazione
-                  steps: [
-                    {
-                      type: "step",
-                      player: "if opponent switches into Lapras",
-                    },
-                  ],
-                },
-                {
-                  name: "🔄 Nidoking switches in", // Nome della variazione
+                  name: "🔄 Nidoking", // Nome della variazione
                   steps: [
                     {
                       type: "step",
@@ -238,7 +273,7 @@ export const eliteFourMembers = [
                   ],
                 },
                 {
-                  name: "🔄 Slowbro switches in", // Nome della variazione
+                  name: "🔄 Slowbro", // Nome della variazione
                   steps: [
                     {
                       type: "step",
@@ -248,7 +283,7 @@ export const eliteFourMembers = [
                   ],
                 },
                 {
-                  name: "🔄 Vileplume switches in", // Nome della variazione
+                  name: "🔄 Vileplume", // Nome della variazione
                   steps: [
                     {
                       type: "step",

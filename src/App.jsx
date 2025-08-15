@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "./App.css"; // Importa il file CSS
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import "./App.css";
 import { eliteFourMembers } from "./data/eliteFourData";
 import EliteMemberCard from "./components/EliteMemberCard";
 import { pokemonRegions } from "./data/regionData";
@@ -14,231 +14,276 @@ import {
 import { pokemonData } from "./data/pokemonData";
 
 function App() {
+  // State management
   const [selectedTeam, setSelectedTeam] = useState("Team 1");
   const [selectedMember, setSelectedMember] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState(null);
-  const [filteredEliteFour, setFilteredEliteFour] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [isPokemonDetailsVisible, setIsPokemonDetailsVisible] = useState(false);
-
-  // Nuovo stato per tenere traccia del livello di strategia attualmente visualizzato
   const [currentStrategyView, setCurrentStrategyView] = useState([]);
-  // Nuovo stato per tenere traccia dello storico dei livelli visitati (per il tasto "Indietro")
   const [strategyHistory, setStrategyHistory] = useState([]);
 
-  // Funzione per colorare il testo della strategia (ora restituisce il testo in grassetto e bianco)
-  const colorizeStrategyText = (text) => {
-    if (!text) return null;
-
-    // Restituisce il testo avvolto in un tag <strong> con stile per renderlo in grassetto e bianco
-    return text;
-  };
-
-  useEffect(() => {
-    if (selectedRegion) {
-      const membersForRegion = eliteFourMembers.filter(
-        (member) => member.region === selectedRegion.name
-      );
-      setFilteredEliteFour(membersForRegion);
-    } else {
-      setFilteredEliteFour([]);
-    }
-    setSelectedMember(null);
-    setSelectedPokemon(null);
-    setIsPokemonDetailsVisible(false);
-    // Resetta gli stati della strategia
-    setCurrentStrategyView([]);
-    setStrategyHistory([]);
+  // Memoized filtered elite four members based on selected region
+  const filteredEliteFour = useMemo(() => {
+    return selectedRegion
+      ? eliteFourMembers.filter((member) => member.region === selectedRegion.name)
+      : [];
   }, [selectedRegion]);
 
-  const handleMemberClick = (member) => {
-    if (selectedMember === member) {
-      setSelectedMember(null);
-    } else {
-      setSelectedMember(member);
+  // Memoized current team data
+  const currentTeamData = useMemo(
+    () => selectedMember?.teams?.[selectedTeam],
+    [selectedMember, selectedTeam]
+  );
+
+  // Memoized pokemon names for selected team
+  const pokemonNamesForSelectedTeam = useMemo(
+    () => currentTeamData?.pokemonNames || [],
+    [currentTeamData]
+  );
+
+  // Preload images
+  useEffect(() => {
+    pokemonNamesForSelectedTeam.forEach((name) => {
+      const img = new Image();
+      img.src = pokemonImages[name];
+    });
+  }, [pokemonNamesForSelectedTeam]);
+
+  // Memoized selected pokemon data
+  const selectedPokemonData = useMemo(
+    () => pokemonData.find((p) => p.name === selectedPokemon?.name),
+    [selectedPokemon]
+  );
+
+  // Memoized selected pokemon types
+  const selectedPokemonTypes = useMemo(
+    () => selectedPokemonData?.types || [],
+    [selectedPokemonData]
+  );
+
+  // Memoized background for details title
+  const detailsTitleBackground = useMemo(() => {
+    if (typeBackgrounds[selectedPokemon?.name]) {
+      return typeBackgrounds[selectedPokemon.name];
     }
-    setSelectedPokemon(null);
-    setIsPokemonDetailsVisible(false);
-    // Resetta gli stati della strategia
+
+    if (selectedPokemonTypes.length >= 2) {
+      return generateDualTypeGradient(
+        selectedPokemonTypes[0],
+        selectedPokemonTypes[1]
+      );
+    }
+
+    if (selectedPokemonTypes.length === 1) {
+      return typeBackgrounds[selectedPokemonTypes[0]] || typeBackgrounds[""];
+    }
+
+    return typeBackgrounds[""];
+  }, [selectedPokemon, selectedPokemonTypes]);
+
+  // Reset strategy states
+  const resetStrategyStates = useCallback(() => {
     setCurrentStrategyView([]);
     setStrategyHistory([]);
-  };
+  }, []);
 
-  const handleRegionClick = (region) => {
-    if (selectedRegion === region) {
+  // Event handlers
+  const handleMemberClick = useCallback(
+    (member) => {
+      setSelectedMember((prev) => (prev === member ? null : member));
+      setSelectedPokemon(null);
+      setIsPokemonDetailsVisible(false);
+      resetStrategyStates();
+    },
+    [resetStrategyStates]
+  );
+
+  const handleRegionClick = useCallback((region) => {
+    setSelectedRegion((prev) => (prev === region ? null : region));
+  }, []);
+
+  const handleTeamClick = useCallback(
+    (teamName) => {
+      setSelectedTeam(teamName);
       setSelectedRegion(null);
-    } else {
-      setSelectedRegion(region);
-    }
-  };
+      setSelectedMember(null);
+      setSelectedPokemon(null);
+      setIsPokemonDetailsVisible(false);
+      resetStrategyStates();
+    },
+    [resetStrategyStates]
+  );
 
-  const handleTeamClick = (teamName) => {
-    setSelectedTeam(teamName);
-    setSelectedRegion(null);
+  const handlePokemonCardClick = useCallback(
+    (pokemon) => {
+      setSelectedPokemon(pokemon);
+      setIsPokemonDetailsVisible(true);
+
+      const pokemonStrategy =
+        selectedMember?.teams?.[selectedTeam]?.pokemonStrategies?.[pokemon?.name] || [];
+      setCurrentStrategyView(pokemonStrategy);
+      setStrategyHistory([]);
+    },
+    [selectedMember, selectedTeam]
+  );
+
+  const closePokemonDetails = useCallback(() => {
+    setSelectedPokemon(null);
+    setIsPokemonDetailsVisible(false);
+    resetStrategyStates();
+  }, [resetStrategyStates]);
+
+  const handleStepClick = useCallback(
+    (item) => {
+      if (item?.steps && Array.isArray(item.steps)) {
+        setStrategyHistory((prev) => [...prev, currentStrategyView]);
+        setCurrentStrategyView(item.steps);
+      }
+    },
+    [currentStrategyView]
+  );
+
+  const handleBackClick = useCallback(() => {
+    if (strategyHistory.length > 0) {
+      setCurrentStrategyView(strategyHistory[strategyHistory.length - 1]);
+      setStrategyHistory((prev) => prev.slice(0, -1));
+    }
+  }, [strategyHistory]);
+
+  // Effect to reset states when region changes
+  useEffect(() => {
     setSelectedMember(null);
     setSelectedPokemon(null);
     setIsPokemonDetailsVisible(false);
-    setFilteredEliteFour([]);
-    // Resetta gli stati della strategia
-    setCurrentStrategyView([]);
-    setStrategyHistory([]);
-  };
+    resetStrategyStates();
+  }, [selectedRegion, resetStrategyStates]);
 
-  const handlePokemonCardClick = (pokemon) => {
-    setSelectedPokemon(pokemon);
-    setIsPokemonDetailsVisible(true);
-    // Quando si apre la scheda, imposta la vista sulla strategia principale
-    const pokemonStrategy =
-      eliteFourMembers.find((member) => member.name === selectedMember?.name) // Trova il membro selezionato
-        ?.teams?.[selectedTeam]?.pokemonStrategies?.[pokemon?.name] || []; // Accedi alla strategia del Pokémon
-
-    setCurrentStrategyView(pokemonStrategy);
-    setStrategyHistory([]); // Inizia con uno storico vuoto
-  };
-
-  const closePokemonDetails = () => {
-    setSelectedPokemon(null);
-    setIsPokemonDetailsVisible(false);
-    // Resetta gli stati della strategia alla chiusura
-    setCurrentStrategyView([]);
-    setStrategyHistory([]);
-  };
-
-  // Funzione per gestire il click su una variazione
-  const handleStepClick = (item) => {
-    // Se l'item è una variazione (con un nome e un array di steps), naviga nei suoi steps
-    if (
-      item.name &&
-      item.steps &&
-      Array.isArray(item.steps) &&
-      item.steps.length > 0
-    ) {
-      setStrategyHistory([...strategyHistory, currentStrategyView]);
-      setCurrentStrategyView(item.steps);
+  // Improved strategy rendering
+  const renderStrategyContent = useCallback((content) => {
+    if (!content || content.length === 0) {
+      return <p>No strategy available</p>;
     }
-    // Se lo step non ha steps (cioè è un main type o un semplice step), non fa nulla
-  };
 
-  // Funzione per tornare al livello precedente nello storico
-  const handleBackClick = () => {
-    // Prende l'ultimo elemento dallo storico
-    const previousView = strategyHistory[strategyHistory.length - 1];
-    // Rimuove l'ultimo elemento dallo storico
-    const updatedHistory = strategyHistory.slice(0, -1);
-
-    setStrategyHistory(updatedHistory);
-    setCurrentStrategyView(previousView);
-  };
-
-  const currentTeamData = selectedMember?.teams?.[selectedTeam];
-  const pokemonNamesForSelectedTeam = currentTeamData?.pokemonNames || [];
-
-  const selectedPokemonData = pokemonData.find(
-    (p) => p.name === selectedPokemon?.name
-  );
-  const selectedPokemonTypes = selectedPokemonData?.types || [];
-
-  let detailsTitleBackground =
-    typeBackgrounds[selectedPokemon?.name] || typeBackgrounds[""];
-
-  if (
-    !typeBackgrounds[selectedPokemon?.name] &&
-    selectedPokemonTypes.length >= 2
-  ) {
-    detailsTitleBackground = generateDualTypeGradient(
-      selectedPokemonTypes[0],
-      selectedPokemonTypes[1]
-    );
-  } else if (
-    !typeBackgrounds[selectedPokemon?.name] &&
-    selectedPokemonTypes.length === 1
-  ) {
-    detailsTitleBackground =
-      typeBackgrounds[selectedPokemonTypes[0]] || typeBackgrounds[""];
-  }
-
-  // Funzione per renderizzare il contenuto della strategia/variazione corrente
-  const renderCurrentStrategyView = (strategy) => {
-    if (!strategy || strategy.length === 0) {
-      // Controlla se siamo nella vista principale o in una variazione
-      if (strategyHistory.length === 0) {
-        // Siamo nella vista principale e non c'è strategia
-        return <p>No strategy details available for this pokemon.</p>;
-      } else {
-        // Siamo in una variazione, ma il contenuto è vuoto
-        return <p>No details available for this variation.</p>;
+    return content.map((item, index) => {
+      // Pure variation container (like Lapras case)
+      if (!item.type && item.variations) {
+        return (
+          <div key={index} className="variation-group">
+            {item.variations.map((variation, varIndex) => (
+              <div
+                key={varIndex}
+                className="strategy-variation-as-button"
+                onClick={() => handleStepClick(variation)}
+              >
+                <p>{variation.name}</p>
+              </div>
+            ))}
+          </div>
+        );
       }
-    }
 
-    // Determina se stiamo visualizzando la strategia principale (un singolo oggetto di tipo "main")
-    const isMainStrategyView =
-      strategy.length === 1 && strategy[0].type === "main";
-
-    return (
-      <div className="strategy-content-list">
-        {/* Mostra il bottone Indietro solo se c'è storico */}
-        {strategyHistory.length > 0 && (
-          <button className="back-button" onClick={handleBackClick}>
-            Back
-          </button>
-        )}
-
-        {isMainStrategyView ? (
-          // Renderizza lo step principale e le sue variazioni inline
-          <>
-            <div className="strategy-step-main">
-              <p>{colorizeStrategyText(strategy[0].player)}</p>
-            </div>
-            {strategy[0].variations && strategy[0].variations.length > 0 && (
-              <div className="main-strategy-variations-list">
-                {" "}
-                {/* Nuovo contenitore per le variazioni */}
-                {strategy[0].variations.map((variation, varIndex) => (
+      // Main strategy
+      if (item.type === "main") {
+        return (
+          <div key={index} className="strategy-block">
+            {item.player && (
+              <div className="strategy-step-main">
+                <p>{item.player}</p>
+              </div>
+            )}
+            {item.variations && (
+              <div className="variation-group">
+                {item.variations.map((variation, varIndex) => (
                   <div
                     key={varIndex}
-                    className="strategy-variation-as-button" // Nuova classe per le variazioni stilizzate come bottoni
+                    className="strategy-variation-as-button"
                     onClick={() => handleStepClick(variation)}
                   >
-                    <p>{colorizeStrategyText(variation.name)}</p>{" "}
-                    {/* Mostra il nome della variazione */}
+                    <p>{variation.name}</p>
                   </div>
                 ))}
               </div>
             )}
-          </>
-        ) : (
-          // Renderizza i singoli step (quando si visualizzano i passaggi di una specifica variazione)
-          strategy.map((item, index) => {
-            if (!item || !item.type) {
-              console.warn(
-                "Skipping invalid item in strategy content at index:",
-                index,
-                item
-              );
-              return null;
-            }
-            // Qui, 'item' dovrebbe essere sempre di tipo "step"
-            if (item.type === "step") {
-              return (
-                <div key={index} className="strategy-step">
-                  <p>{colorizeStrategyText(item.player)}</p>
-                </div>
-              );
-            }
-            return null; // Non dovrebbe accadere con la nuova struttura se la logica è corretta
-          })
-        )}
-      </div>
-    );
-  };
+          </div>
+        );
+      }
+
+      // Regular step
+      if (item.type === "step") {
+        return (
+          <div key={index} className="strategy-step">
+            {item.player && <p>{item.player}</p>}
+            {item.variations && (
+              <div className="variation-group">
+                {item.variations.map((variation, varIndex) => (
+                  <div
+                    key={varIndex}
+                    className="strategy-variation-as-button"
+                    onClick={() => handleStepClick(variation)}
+                  >
+                    <p>{variation.name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      return null;
+    });
+  }, [handleStepClick, handleBackClick]);
+
+  // Render helper for Pokemon cards
+  const renderPokemonCards = useMemo(() => {
+    if (!pokemonNamesForSelectedTeam.length) {
+      return (
+        <p>
+          No pokemon defined for {selectedTeam} of {selectedMember?.name}.
+        </p>
+      );
+    }
+
+    return pokemonNamesForSelectedTeam.map((pokemonName, index) => {
+      const pokemon = pokemonData.find((p) => p.name === pokemonName) || {
+        name: pokemonName,
+        types: [],
+      };
+      const pokemonTypes = pokemon.types || [];
+
+      let nameBackground = typeBackgrounds[pokemon.name] || typeBackgrounds[""];
+
+      if (!typeBackgrounds[pokemon.name] && pokemonTypes.length >= 2) {
+        nameBackground = generateDualTypeGradient(
+          pokemonTypes[0],
+          pokemonTypes[1]
+        );
+      } else if (!typeBackgrounds[pokemon.name] && pokemonTypes.length === 1) {
+        nameBackground =
+          typeBackgrounds[pokemonTypes[0]] || typeBackgrounds[""];
+      }
+
+      return (
+        <PokemonCard
+          key={index}
+          pokemonName={pokemon.name}
+          pokemonImageSrc={pokemonImages[pokemon.name]}
+          onClick={() => handlePokemonCardClick(pokemon)}
+          nameBackground={nameBackground}
+        />
+      );
+    });
+  }, [pokemonNamesForSelectedTeam, selectedMember, selectedTeam, handlePokemonCardClick]);
 
   return (
     <div className="App">
       <header className="header-bar">
-        <h1>PokéMMO Elite Four Compendium</h1>
+        <h1>PokéMMO Compendium</h1>
       </header>
 
       <div className="container">
+        {/* Team Selector */}
         <div className="cards-container team-selector-container">
           {Object.keys(eliteFourMembers[0]?.teams || {}).map((teamName) => (
             <div
@@ -266,18 +311,19 @@ function App() {
           ))}
         </div>
 
+        {/* Regions */}
         <div className="cards-container regions-container">
           {pokemonRegions.map((region) => (
-            <React.Fragment key={region.id}>
-              <RegionCard
-                region={region}
-                onRegionClick={handleRegionClick}
-                isSelected={selectedRegion === region}
-              />
-            </React.Fragment>
+            <RegionCard
+              key={region.id}
+              region={region}
+              onRegionClick={handleRegionClick}
+              isSelected={selectedRegion === region}
+            />
           ))}
         </div>
 
+        {/* Elite Four Members */}
         {selectedRegion && filteredEliteFour.length > 0 && (
           <div className="cards-container elitefour-container">
             {filteredEliteFour.map((member, i) => {
@@ -299,62 +345,12 @@ function App() {
           </div>
         )}
 
+        {/* Pokemon Cards */}
         {selectedMember && (
-          <div className="pokemon-cards-display">
-            {pokemonNamesForSelectedTeam.length > 0 ? (
-              pokemonNamesForSelectedTeam.map((pokemonName, index) => {
-                const pokemon = pokemonData.find((p) => p.name === pokemonName);
-
-                if (!pokemon) {
-                  return (
-                    <PokemonCard
-                      key={index}
-                      onClick={() =>
-                        handlePokemonCardClick({ name: pokemonName, types: [] })
-                      }
-                      nameBackground={typeBackgrounds[""]}
-                    />
-                  );
-                }
-
-                const pokemonTypes = pokemon.types || [];
-                let nameBackground =
-                  typeBackgrounds[pokemon.name] || typeBackgrounds[""];
-
-                if (
-                  !typeBackgrounds[pokemon.name] &&
-                  pokemonTypes.length >= 2
-                ) {
-                  nameBackground = generateDualTypeGradient(
-                    pokemonTypes[0],
-                    pokemonTypes[1]
-                  );
-                } else if (
-                  !typeBackgrounds[pokemon.name] &&
-                  pokemonTypes.length === 1
-                ) {
-                  nameBackground =
-                    typeBackgrounds[pokemonTypes[0]] || typeBackgrounds[""];
-                }
-
-                return (
-                  <PokemonCard
-                    key={index}
-                    pokemonName={pokemon.name}
-                    pokemonImageSrc={pokemonImages[pokemon.name]}
-                    onClick={() => handlePokemonCardClick(pokemon)}
-                    nameBackground={nameBackground}
-                  />
-                );
-              })
-            ) : (
-              <p>
-                No pokemon defined for {selectedTeam} of {selectedMember.name}.
-              </p>
-            )}
-          </div>
+          <div className="pokemon-cards-display">{renderPokemonCards}</div>
         )}
 
+        {/* Pokemon Details Modal */}
         {isPokemonDetailsVisible && selectedPokemon && (
           <div className="overlay" onClick={closePokemonDetails}>
             <div
@@ -370,8 +366,12 @@ function App() {
 
               <div className="details-menu">
                 <div className="menu-content">
-                  {/* Renderizza la vista corrente della strategia */}
-                  {renderCurrentStrategyView(currentStrategyView)}
+                  {strategyHistory.length > 0 && (
+                    <button className="back-button" onClick={handleBackClick}>
+                      Back
+                    </button>
+                  )}
+                  {renderStrategyContent(currentStrategyView)}
                 </div>
               </div>
             </div>

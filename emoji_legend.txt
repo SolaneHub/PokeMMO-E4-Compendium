@@ -1,0 +1,54 @@
+# Emoji Legend for Pokémon Battle Guide
+
+## 📜 Move Categories
+💥  Damage Move (Direct damage: physical or special)
+
+### Status Moves - Negative Effects on Opponent
+☠️  Harmful Status (poison, burn, paralysis) e.g., Toxic, Will-O-Wisp, Thunder Wave
+📉  Stat Debuff (reduce opponent's stats) e.g., Screech, Charm, Sand Attack
+
+### Field / Hazard Moves
+🪤  Hazards & Traps e.g., Stealth Rock, Spikes, Sticky Web
+🌪️  Weather / Field Conditions e.g., Rain Dance, Sunny Day, Sandstorm
+
+### Setup / Buff Moves
+💪  Physical Boost e.g., Swords Dance, Bulk Up
+🧠  Special / Mixed Boost e.g., Calm Mind, Nasty Plot
+✨  Generic Buff / Defensive Boost e.g., Cosmic Power, Iron Defense
+
+### Special Utility Moves
+🔁  Item Swap (e.g., Trick, Switcheroo)
+
+## 🎯 Turn Order & Steps
+🥇  First Move to Use
+1️⃣  First Move (alternative compact)
+🔹  Generic Step Marker
+
+## 🎒 Items
+🎒  Generic Item
+🧪  X-Item or Special Battle Item
+💊  Healing Item (Potion, Full Restore)
+📦  Miscellaneous Item
+
+## 🔄 Switching & Conditions
+🔄  Switch Pokémon
+✔️  Pokémon stays in (no switch)
+❓  If condition (conditional action)
+
+## 🛡️ Tanking
+🛡️  Tank / Wall (absorb damage or status)
+🧱  Wall (high defense Pokémon)
+🪨  Rock-solid resistance
+
+## 🐾 Pokémon Specific Icons
+🤖  Metagross (steel/psychic robot-like)
+🥚  Chansey (egg-shaped)
+🕯️  Chandelure (candle chandelier ghost)
+🥊  Poliwrath (fighting stance)
+⛏️  Excadrill (drill mole)
+
+## 🌟 Other Useful Symbols
+⚡  Fast Action / Priority
+🔥  Fire-type emphasis (optional thematic)
+❄️  Ice-type emphasis (optional thematic)
+💧  Water-type emphasis (optional thematic)
