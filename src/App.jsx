@@ -26,7 +26,9 @@ function App() {
   // Memoized filtered elite four members based on selected region
   const filteredEliteFour = useMemo(() => {
     return selectedRegion
-      ? eliteFourMembers.filter((member) => member.region === selectedRegion.name)
+      ? eliteFourMembers.filter(
+          (member) => member.region === selectedRegion.name
+        )
       : [];
   }, [selectedRegion]);
 
@@ -121,7 +123,9 @@ function App() {
       setIsPokemonDetailsVisible(true);
 
       const pokemonStrategy =
-        selectedMember?.teams?.[selectedTeam]?.pokemonStrategies?.[pokemon?.name] || [];
+        selectedMember?.teams?.[selectedTeam]?.pokemonStrategies?.[
+          pokemon?.name
+        ] || [];
       setCurrentStrategyView(pokemonStrategy);
       setStrategyHistory([]);
     },
@@ -160,80 +164,83 @@ function App() {
   }, [selectedRegion, resetStrategyStates]);
 
   // Improved strategy rendering
-  const renderStrategyContent = useCallback((content) => {
-    if (!content || content.length === 0) {
-      return <p>No strategy available</p>;
-    }
-
-    return content.map((item, index) => {
-      // Pure variation container (like Lapras case)
-      if (!item.type && item.variations) {
-        return (
-          <div key={index} className="variation-group">
-            {item.variations.map((variation, varIndex) => (
-              <div
-                key={varIndex}
-                className="strategy-variation-as-button"
-                onClick={() => handleStepClick(variation)}
-              >
-                <p>{variation.name}</p>
-              </div>
-            ))}
-          </div>
-        );
+  const renderStrategyContent = useCallback(
+    (content) => {
+      if (!content || content.length === 0) {
+        return <p>No strategy available</p>;
       }
 
-      // Main strategy
-      if (item.type === "main") {
-        return (
-          <div key={index} className="strategy-block">
-            {item.player && (
-              <div className="strategy-step-main">
-                <p>{item.player}</p>
-              </div>
-            )}
-            {item.variations && (
-              <div className="variation-group">
-                {item.variations.map((variation, varIndex) => (
-                  <div
-                    key={varIndex}
-                    className="strategy-variation-as-button"
-                    onClick={() => handleStepClick(variation)}
-                  >
-                    <p>{variation.name}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      }
+      return content.map((item, index) => {
+        // Pure variation container (like Lapras case)
+        if (!item.type && item.variations) {
+          return (
+            <div key={index} className="variation-group">
+              {item.variations.map((variation, varIndex) => (
+                <div
+                  key={varIndex}
+                  className="strategy-variation-as-button"
+                  onClick={() => handleStepClick(variation)}
+                >
+                  <p>{variation.name}</p>
+                </div>
+              ))}
+            </div>
+          );
+        }
 
-      // Regular step
-      if (item.type === "step") {
-        return (
-          <div key={index} className="strategy-step">
-            {item.player && <p>{item.player}</p>}
-            {item.variations && (
-              <div className="variation-group">
-                {item.variations.map((variation, varIndex) => (
-                  <div
-                    key={varIndex}
-                    className="strategy-variation-as-button"
-                    onClick={() => handleStepClick(variation)}
-                  >
-                    <p>{variation.name}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      }
+        // Main strategy
+        if (item.type === "main") {
+          return (
+            <div key={index} className="strategy-block">
+              {item.player && (
+                <div className="strategy-step-main">
+                  <p>{item.player}</p>
+                </div>
+              )}
+              {item.variations && (
+                <div className="variation-group">
+                  {item.variations.map((variation, varIndex) => (
+                    <div
+                      key={varIndex}
+                      className="strategy-variation-as-button"
+                      onClick={() => handleStepClick(variation)}
+                    >
+                      <p>{variation.name}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        }
 
-      return null;
-    });
-  }, [handleStepClick, handleBackClick]);
+        // Regular step
+        if (item.type === "step") {
+          return (
+            <div key={index} className="strategy-step">
+              {item.player && <p>{item.player}</p>}
+              {item.variations && (
+                <div className="variation-group">
+                  {item.variations.map((variation, varIndex) => (
+                    <div
+                      key={varIndex}
+                      className="strategy-variation-as-button"
+                      onClick={() => handleStepClick(variation)}
+                    >
+                      <p>{variation.name}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        }
+
+        return null;
+      });
+    },
+    [handleStepClick, handleBackClick]
+  );
 
   // Render helper for Pokemon cards
   const renderPokemonCards = useMemo(() => {
@@ -274,7 +281,12 @@ function App() {
         />
       );
     });
-  }, [pokemonNamesForSelectedTeam, selectedMember, selectedTeam, handlePokemonCardClick]);
+  }, [
+    pokemonNamesForSelectedTeam,
+    selectedMember,
+    selectedTeam,
+    handlePokemonCardClick,
+  ]);
 
   return (
     <div className="App">
